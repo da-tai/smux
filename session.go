@@ -319,10 +319,10 @@ func (s *Session) recvLoop() {
 		// read header first
 		if _, err := io.ReadFull(s.conn, hdr[:]); err == nil {
 			atomic.StoreInt32(&s.dataReady, 1)
-			if hdr.Version() != byte(s.config.Version) {
-				s.notifyProtoError(ErrInvalidProtocol)
-				return
-			}
+// 			if hdr.Version() != byte(s.config.Version) {
+// 				s.notifyProtoError(ErrInvalidProtocol)
+// 				return
+// 			}
 			sid := hdr.StreamID()
 			switch hdr.Cmd() {
 			case cmdNOP:
